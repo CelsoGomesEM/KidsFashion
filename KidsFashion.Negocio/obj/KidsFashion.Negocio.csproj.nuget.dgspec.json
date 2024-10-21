@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CELSO\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj": {}
+    "C:\\CopyPaste\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj": {}
   },
   "projects": {
-    "C:\\CELSO\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj": {
+    "C:\\CopyPaste\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CELSO\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj",
+        "projectUniqueName": "C:\\CopyPaste\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj",
         "projectName": "KidsFashion.Negocio",
-        "projectPath": "C:\\CELSO\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj",
-        "packagesPath": "C:\\Users\\CGBJunior\\.nuget\\packages\\",
-        "outputPath": "C:\\CELSO\\KidsFashion\\KidsFashion.Negocio\\obj\\",
+        "projectPath": "C:\\CopyPaste\\KidsFashion\\KidsFashion.Negocio\\KidsFashion.Negocio.csproj",
+        "packagesPath": "C:\\Users\\marce\\.nuget\\packages\\",
+        "outputPath": "C:\\CopyPaste\\KidsFashion\\KidsFashion.Negocio\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\CGBJunior\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\marce\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,7 +23,6 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
-          "\\\\10.6.57.8\\coodes\\_NugetAGEHAB": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

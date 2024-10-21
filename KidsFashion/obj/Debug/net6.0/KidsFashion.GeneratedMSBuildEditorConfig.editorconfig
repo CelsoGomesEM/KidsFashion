@@ -9,91 +9,91 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KidsFashion
 build_property.RootNamespace = KidsFashion
-build_property.ProjectDir = C:\CELSO\KidsFashion\KidsFashion\
+build_property.ProjectDir = C:\CopyPaste\KidsFashion\KidsFashion\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\CELSO\KidsFashion\KidsFashion
+build_property.MSBuildProjectDirectory = C:\CopyPaste\KidsFashion\KidsFashion
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Categoria/Create.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Categoria/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Categoria/Edit.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Categoria/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Categoria/Listagem.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Categoria/Listagem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhXExpc3RhZ2VtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Cliente/Create.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Cliente/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Cliente/Edit.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Cliente/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Cliente/Listagem.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Cliente/Listagem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxMaXN0YWdlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Fornecedor/Create.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Fornecedor/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybmVjZWRvclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Fornecedor/Edit.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Fornecedor/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybmVjZWRvclxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Fornecedor/Listagem.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Fornecedor/Listagem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybmVjZWRvclxMaXN0YWdlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Home/Index.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Home/Privacy.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Login/Login.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Produto/Create.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Produto/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Produto/Edit.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Produto/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Produto/Listagem.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Produto/Listagem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHV0b1xMaXN0YWdlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Shared/Error.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/_ViewImports.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/_ViewStart.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CELSO/KidsFashion/KidsFashion/Views/Shared/_Layout.cshtml]
+[C:/CopyPaste/KidsFashion/KidsFashion/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-4d1rr7s232
