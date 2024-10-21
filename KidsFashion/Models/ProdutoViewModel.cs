@@ -14,11 +14,11 @@ namespace KidsFashion.Models
 
         // Para Fornecedor
         public int Fornecedor_Id { get; set; }
-        public SelectList FornecedorOptions { get; set; }
+        public IEnumerable<SelectListItem> FornecedorOptions { get; set; }
 
         // Para Categoria
         public int Categoria_Id { get; set; }
-        public SelectList CategoriaOptions { get; set; }
+        public IEnumerable<SelectListItem> CategoriaOptions { get; set; }
 
     }
 }

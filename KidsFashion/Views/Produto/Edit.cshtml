@@ -1,5 +1,58 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model KidsFashion.Models.ProdutoViewModel
+
 @{
+    ViewData["Title"] = "Editar Produto";
 }
+
+<div class="container">
+    <h1 class="display-4 text-center">Editar Produto</h1>
+
+    <br />
+
+    @using (Html.BeginForm("SubmitEdit", "Produto", FormMethod.Post, new { id = "formProduto" }))
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            <div class="col-md-6 mb-3">
+                <label for="Nome" class="form-label">@Html.DisplayNameFor(model => model.Nome)</label>
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @required = "required", id = "Nome" })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="Descricao" class="form-label">@Html.DisplayNameFor(model => model.Descricao)</label>
+                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control", @required = "required", id = "Descricao" })
+                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4 mb-3">
+                <label for="Quantidade" class="form-label">@Html.DisplayNameFor(model => model.Quantidade)</label>
+                @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", @required = "required", id = "Quantidade" })
+                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="Fornecedor_Id" class="form-label">@Html.DisplayNameFor(model => model.Fornecedor)</label>
+                @Html.DropDownListFor(model => model.Fornecedor_Id, Model.FornecedorOptions, "Selecione um fornecedor", new { @class = "form-control", @required = "required", id = "Fornecedor_Id" })
+                @Html.ValidationMessageFor(model => model.Fornecedor_Id, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="Categoria_Id" class="form-label">@Html.DisplayNameFor(model => model.Categoria)</label>
+                @Html.DropDownListFor(model => model.Categoria_Id, Model.CategoriaOptions, "Selecione uma categoria", new { @class = "form-control", @required = "required", id = "Categoria_Id" })
+                @Html.ValidationMessageFor(model => model.Categoria_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col d-flex justify-content-end">
+                <a href="@Url.Action("Index", "Produto")">
+                    <button type="button" class="btn btn-secondary">Voltar</button>
+                </a>
+                <button type="submit" class="btn btn-success" id="submitButton" style="margin-left: 15px;">Cadastrar</button>
+            </div>
+        </div>
+    }
+</div>
