@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KidsFashion.Servicos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60fb2b67a7e7bf465f2d892dfe67bb22d8a4222d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b18f4467cf7c69355288e8c3a983029cff2a7651")]
 [assembly: System.Reflection.AssemblyProductAttribute("KidsFashion.Servicos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KidsFashion.Servicos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
