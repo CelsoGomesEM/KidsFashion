@@ -1,5 +1,76 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model KidsFashion.Models.ClienteViewModel
+
 @{
+    ViewData["Title"] = "Editar Cliente";
 }
+
+<div class="container">
+    <h1 class="display-4 text-center">Edição de Clientes</h1>
+
+    <br />
+
+    @using (Html.BeginForm("SubmitEdit", "Cliente", FormMethod.Post, new { id = "formCliente" }))
+    {
+        @Html.HiddenFor(model => model.Id)
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            <div class="col-md-4 mb-3">
+                <label for="descricao" class="form-label">@Html.DisplayNameFor(model => model.Nome)</label>
+                @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @required = "required", id = "Nome" })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="cpf_cnpj" class="form-label">@Html.DisplayNameFor(model => model.CPF)</label>
+                @Html.TextBoxFor(model => model.CPF, new { @class = "form-control", @required = "required", id = "CPF" })
+                @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="contato" class="form-label">@Html.DisplayNameFor(model => model.Contato)</label>
+                @Html.TextBoxFor(model => model.Contato, new { @class = "form-control", @required = "required", id = "Contato" })
+                @Html.ValidationMessageFor(model => model.Contato, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-5 mb-3">
+                <label for="logradouro" class="form-label">@Html.DisplayNameFor(model => model.Endereco.Logradouro)</label>
+                @Html.TextBoxFor(model => model.Endereco.Logradouro, new { @class = "form-control", @required = "required", id = "Logradouro" })
+                @Html.ValidationMessageFor(model => model.Endereco.Logradouro, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-5 mb-3">
+                <label for="complemento" class="form-label">@Html.DisplayNameFor(model => model.Endereco.Complemento)</label>
+                @Html.TextBoxFor(model => model.Endereco.Complemento, new { @class = "form-control", @required = "required", id = "Complemento" })
+                @Html.ValidationMessageFor(model => model.Endereco.Complemento, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="numero" class="form-label">@Html.DisplayNameFor(model => model.Endereco.Numero)</label>
+                @Html.TextBoxFor(model => model.Endereco.Numero, new { @class = "form-control", @required = "required", id = "Numero" })
+                @Html.ValidationMessageFor(model => model.Endereco.Numero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 mb-3">
+                <label for="Bairro" class="form-label">@Html.DisplayNameFor(model => model.Endereco.Bairro)</label>
+                @Html.TextBoxFor(model => model.Endereco.Bairro, new { @class = "form-control", @required = "required", id = "Bairro" })
+                @Html.ValidationMessageFor(model => model.Endereco.Bairro, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="MunicipioId" class="form-label">@Html.DisplayNameFor(model => model.Endereco.Municipio.Nome)</label>
+                @Html.DropDownListFor(model => model.Endereco.Municipio.Id, Model.MunicipioOptions, "Selecione um município", new { @class = "form-control", @required = "required", id = "MunicipioId" })
+                @Html.ValidationMessageFor(model => model.Endereco.Municipio.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col d-flex justify-content-end">
+                <a href="@Url.Action("Index", "Cliente")">
+                    <button type="button" class="btn btn-secondary">Voltar</button>
+                </a>
+                <button type="submit" class="btn btn-success" id="submitButton" style="margin-left: 15px;">Salvar</button>
+            </div>
+        </div>
+    }
+</div>

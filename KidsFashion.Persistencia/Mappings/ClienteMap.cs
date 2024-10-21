@@ -35,7 +35,7 @@ namespace KidsFashion.Persistencia.Mappings
             builder.HasOne(p => p.Endereco)
                 .WithMany()
                 .HasForeignKey(p => p.Endereco_Id)
-                .OnDelete(DeleteBehavior.NoAction)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
         }
     }

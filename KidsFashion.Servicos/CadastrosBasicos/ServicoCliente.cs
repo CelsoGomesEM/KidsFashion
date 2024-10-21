@@ -12,5 +12,12 @@ namespace KidsFashion.Servicos.CadastrosBasicos
 {
     public class ServicoCliente : ServicoAbstratoDeCadastro<Cliente, RepositorioCliente, PersistContext>
     {
+        public async Task RemoverEnderecoPorClienteId(long clienteId)
+        {
+            using (var repositorio = new RepositorioCliente())
+            {
+                await repositorio.RemoverEnderecoPorClienteId(clienteId);
+            }
+        }
     }
 }
