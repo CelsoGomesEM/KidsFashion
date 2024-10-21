@@ -399,3 +399,17 @@ FodyWeavers.xsd
 **/obj/*
 .vs/*
 /AnaliseTecnica/wwwroot/Documentos/*
+
+# Ignorar arquivos DLL
+*.dll
+
+# Ignorar arquivos PDB
+*.pdb
+
+# Ignorar arquivos de cache de AssemblyReference
+*.csproj.AssemblyReference.cache
+
+# Ignorar arquivos AssemblyInfo.cs
+*.AssemblyInfo.cs
+
+
