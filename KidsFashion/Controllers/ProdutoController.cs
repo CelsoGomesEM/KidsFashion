@@ -118,5 +118,18 @@ namespace KidsFashion.Controllers
             return RedirectToAction("Index");
         }
 
+        // Ação para excluir uma categoria
+        [HttpPost]
+        public async Task<IActionResult> Excluir(long id)
+        {
+            var servicoProduto = new ServicoProduto();
+
+            var produto = servicoProduto.ObterTodosCompletoRastreamento().Result.Where(c => c.Id == id).FirstOrDefault();
+
+            await servicoProduto.Remover(produto);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }
