@@ -29,6 +29,7 @@ namespace KidsFashion.Persistencia
             modelBuilder.ApplyConfiguration(new MunicipioMap());
             modelBuilder.ApplyConfiguration(new ProdutoMap());  
             modelBuilder.ApplyConfiguration(new ClienteMap());  
+            modelBuilder.ApplyConfiguration(new EstoqueMap());
         }
 
         public DbSet<Categoria> Categoria { get; set; }
@@ -36,10 +37,7 @@ namespace KidsFashion.Persistencia
         public DbSet<Endereco> Endereco { get; set; }
         public DbSet<Municipio> Municipio { get; set; }
         public DbSet<Produto> Produto { get; set; }
-
         public DbSet<Cliente> Cliente { get; set; }
-
-
-
+        public DbSet<Estoque> Estoque { get; set; }
     }
 }
