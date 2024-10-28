@@ -1,0 +1,44 @@
+﻿@model KidsFashion.Models.EstoqueViewModel
+
+@{
+    ViewData["Title"] = "Cadastro de Estoque";
+}
+
+<div class="container">
+    <h1 class="display-4 text-center">Cadastro de Estoque</h1>
+
+    <br />
+
+    @using (Html.BeginForm("Submit", "Estoque", FormMethod.Post, new { id = "formEstoque" }))
+    {
+        @Html.HiddenFor(model => model.Id)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group row">
+            <div class="col-md-4 mb-3">
+                <label for="DataEntrada" class="form-label">@Html.DisplayNameFor(model => model.DataEntrada)</label>
+                @Html.TextBoxFor(model => model.DataEntrada, new { @class = "form-control", @type = "date", @required = "required", id = "DataEntrada" })
+                @Html.ValidationMessageFor(model => model.DataEntrada, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="Quantidade" class="form-label">@Html.DisplayNameFor(model => model.Quantidade)</label>
+                @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", @required = "required", id = "Quantidade" })
+                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="Produto" class="form-label">@Html.DisplayNameFor(model => model.Produto.Nome)</label>
+                @Html.DropDownListFor(model => model.Produto.Id, Model.ProdutoOptions, "Selecione um produto", new { @class = "form-control", @required = "required", id = "Produto" })
+                @Html.ValidationMessageFor(model => model.Produto.Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 10px;">
+            <div class="col d-flex justify-content-end">
+                <a href="@Url.Action("Index", "Estoque")">
+                    <button type="button" class="btn btn-secondary">Voltar</button>
+                </a>
+                <button type="submit" class="btn btn-success" id="submitButton" style="margin-left: 15px;">Cadastrar</button>
+            </div>
+        </div>
+    }
+</div>

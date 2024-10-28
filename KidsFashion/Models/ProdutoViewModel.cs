@@ -6,6 +6,8 @@ namespace KidsFashion.Models
     public class ProdutoViewModel
     {
         public int Id { get; set; }
+
+        [Display(Name = "Produto")]
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public int Quantidade { get; set; }

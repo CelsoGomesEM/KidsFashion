@@ -42,6 +42,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxMaXN0YWdlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/CELSO/KidsFashion/KidsFashion/Views/Estoque/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXN0b3F1ZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CELSO/KidsFashion/KidsFashion/Views/Estoque/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXN0b3F1ZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CELSO/KidsFashion/KidsFashion/Views/Estoque/Listagem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXN0b3F1ZVxMaXN0YWdlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/CELSO/KidsFashion/KidsFashion/Views/Fornecedor/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybmVjZWRvclxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -14,6 +14,7 @@ namespace KidsFashion.AutoMapper
             CreateMap<Municipio, MunicipioViewModel>().ReverseMap();
             CreateMap<Produto, ProdutoViewModel>().ReverseMap();
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
+            CreateMap<Estoque, EstoqueViewModel>().ReverseMap();
         }
     }
 }
