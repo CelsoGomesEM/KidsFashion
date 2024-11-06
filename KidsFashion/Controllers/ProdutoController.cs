@@ -53,7 +53,6 @@ namespace KidsFashion.Controllers
             var produto = new Produto();
             produto.Descricao = model.Descricao;
             produto.Nome = model.Nome;
-            produto.Quantidade = model.Quantidade;
             produto.Categoria_Id = model.Categoria_Id;
             produto.Fornecedor_Id = model.Fornecedor_Id;
 
@@ -109,7 +108,6 @@ namespace KidsFashion.Controllers
 
             produtoEdit.Descricao = produto.Descricao;
             produtoEdit.Nome = produto.Nome;
-            produtoEdit.Quantidade = produto.Quantidade;
             produtoEdit.Categoria_Id = produto.Categoria_Id;
             produtoEdit.Fornecedor_Id = produto.Fornecedor_Id;
 

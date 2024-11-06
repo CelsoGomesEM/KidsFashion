@@ -29,17 +29,12 @@
         </div>
 
         <div class="form-group row">
-            <div class="col-md-4 mb-3">
-                <label for="Quantidade" class="form-label">@Html.DisplayNameFor(model => model.Quantidade)</label>
-                @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", @required = "required", id = "Quantidade" })
-                @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-6">
                 <label for="Fornecedor_Id" class="form-label">@Html.DisplayNameFor(model => model.Fornecedor)</label>
                 @Html.DropDownListFor(model => model.Fornecedor_Id, Model.FornecedorOptions, "Selecione um fornecedor", new { @class = "form-control", @required = "required", id = "Fornecedor_Id" })
                 @Html.ValidationMessageFor(model => model.Fornecedor_Id, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-6">
                 <label for="Categoria_Id" class="form-label">@Html.DisplayNameFor(model => model.Categoria)</label>
                 @Html.DropDownListFor(model => model.Categoria_Id, Model.CategoriaOptions, "Selecione uma categoria", new { @class = "form-control", @required = "required", id = "Categoria_Id" })
                 @Html.ValidationMessageFor(model => model.Categoria_Id, "", new { @class = "text-danger" })

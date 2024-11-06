@@ -23,10 +23,6 @@ namespace KidsFashion.Persistencia.Mappings
                 .HasColumnType("nvarchar(100)")
                 .IsRequired();
 
-            builder.Property(p => p.Quantidade)
-                .HasColumnType("int")
-                .IsRequired();
-
             builder.Property(p => p.Descricao)
                 .HasColumnType("nvarchar(250)")
                 .IsRequired();

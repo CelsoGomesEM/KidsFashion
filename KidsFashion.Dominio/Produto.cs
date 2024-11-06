@@ -10,7 +10,6 @@ namespace KidsFashion.Dominio
     {
         public string Descricao { get; set; }
         public string Nome { get; set; }
-        public int Quantidade { get; set; }
         public int Categoria_Id { get; set; } // FK para Endereco
         public Categoria Categoria { get; set; }
         public int Fornecedor_Id { get; set; } // FK para Endereco

@@ -14,7 +14,6 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Descricao</th>
-                <th>Quantidade</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
@@ -26,7 +25,6 @@
                     <td>@item.Id</td>
                     <td>@item.Nome</td>
                     <td>@item.Descricao</td>
-                    <td>@item.Quantidade</td>
                     <td>
                         <a href="@Url.Action("Edit", "Produto", new { id = item.Id })">
                             <button type="button" class="btn btn-primary">

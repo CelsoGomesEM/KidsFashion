@@ -10,7 +10,6 @@ namespace KidsFashion.Models
         [Display(Name = "Produto")]
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public int Quantidade { get; set; }
         public FornecedorViewModel Fornecedor { get; set; }
         public CategoriaViewModel Categoria { get; set; }
 
