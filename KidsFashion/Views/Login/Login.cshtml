@@ -1,34 +1,78 @@
-﻿@model KidsFashion.Models.LoginViewModel
-
-@{
-    Layout = null;
+﻿@{
     ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-<h2>Login</h2>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="login-container">
+        <h2 class="text-center">Login</h2>
 
-<form id="account" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger text-center">@ViewBag.Error</div>
+        }
 
-    <div class="mb-3">
-        <label asp-for="usuario" class="form-label"></label>
-        <input asp-for="usuario" class="form-control" autocomplete="usuario" aria-required="true" placeholder="exemplo@email.com" />
-        <span asp-validation-for="usuario" class="text-danger"></span>
+        <form asp-action="Login" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        </form>
     </div>
+</div>
 
-    <div class="mb-3">
-        <label asp-for="usuario" class="form-label"></label>
-        <input asp-for="usuario" class="form-control" autocomplete="current-password" aria-required="true" />
-        <span asp-validation-for="usuario" class="text-danger"></span>
-    </div>
+<style>
+    /* Centraliza o conteúdo do contêiner e define seu tamanho */
+    .login-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-    <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-success">Entrar</button>
-    </div>
-</form>
+        /* Ajustes para o título e campos */
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
 
-@section Scripts {
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+        .login-container .form-group label {
+            font-weight: 500;
+            margin-bottom: 10px; /* Adiciona espaço abaixo do label */
+        }
 
+        .login-container .form-control {
+            height: 45px;
+            font-size: 1rem;
+            margin-top: 5px; /* Adiciona espaço acima do campo de entrada */
+        }
+
+        /* Adiciona espaço abaixo do input de Username */
+        .login-container .form-group:first-of-type .form-control {
+            margin-bottom: 15px; /* Adiciona espaço abaixo do campo de Username */
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+    /* Evita barra de rolagem */
+    body, html {
+        overflow: hidden;
+    }
+</style>
