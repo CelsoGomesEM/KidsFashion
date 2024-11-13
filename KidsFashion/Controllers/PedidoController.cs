@@ -55,17 +55,20 @@ namespace KidsFashion.Controllers
             var clientes = await servicoCliente.ObterTodos();
             var produtos = await servicoProduto.ObterTodos();
 
-            // Retrieve the current list of PedidoProdutos from TempData, if any
             model.PedidoProdutos = TempData.ContainsKey("PedidoProdutos")
                 ? TempData.Get<List<PedidoProdutoViewModel>>("PedidoProdutos")
                 : new List<PedidoProdutoViewModel>();
 
             if (Request.Form["ActionType"] == "add")
             {
-                // Check if the product already exists in the PedidoProdutos list
+                
                 if (model.PedidoProdutos.Any(p => p.Produto_Id == model.Produto_Id))
                 {
                     ModelState.AddModelError("", $"Este produto já foi adicionado, caso necessite editar a quantidade remova o item e adicione novamente.");
+                }
+                else if (!ExisteProdutoEmEstoque(model.Produto_Id))
+                {
+                    ModelState.AddModelError("", $"Todas as unidades existentes deste produto já foram vendidas, ou produto não existe em estoque.");
                 }
                 else
                 {
@@ -88,10 +91,8 @@ namespace KidsFashion.Controllers
                     }
                 }
 
-                // Store the updated list in TempData for the next request
                 TempData.Put("PedidoProdutos", model.PedidoProdutos);
 
-                // Reload options for Cliente and Produto
                 model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
                 model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
 
@@ -99,15 +100,21 @@ namespace KidsFashion.Controllers
             }
             else
             {
-                // Final save action; you could save the order to the database here
-
-                // Clear the TempData once it's saved
                 TempData.Remove("PedidoProdutos");
-
                 return RedirectToAction("Index");
             }
         }
 
+        private bool ExisteProdutoEmEstoque(int produto_Id)
+        {
+            var servicoEstoque = new ServicoEstoque();
 
+            var estoqueProduto = servicoEstoque.ObterTodosFiltro(c => c.Produto_Id == produto_Id).Result.FirstOrDefault();
+
+            if(estoqueProduto != null && estoqueProduto.Quantidade > 0)
+                return true;
+
+            return false;
+        }
     }
 }

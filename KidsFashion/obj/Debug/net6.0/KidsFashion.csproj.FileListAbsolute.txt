@@ -21,6 +21,7 @@ C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Microsoft.IdentityModel.Protoc
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\System.Drawing.Common.dll
@@ -72,4 +73,3 @@ C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\refint\KidsFashion.dll
 C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\KidsFashion.pdb
 C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\KidsFashion.genruntimeconfig.cache
 C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\ref\KidsFashion.dll
-C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Newtonsoft.Json.dll

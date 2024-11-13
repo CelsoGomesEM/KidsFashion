@@ -32,20 +32,21 @@
 
         <!-- Produto e Quantidade -->
         <div class="form-group row">
-            <div class="col-md-7 mb-4">
+            <div class="col-md-5 mb-4">
                 <label for="Produto_Id" class="form-label">@Html.DisplayNameFor(model => model.Produto)</label>
                 @Html.DropDownListFor(model => model.Produto_Id, Model.ProdutoOptions, "Selecione um Produto", new { @class = "form-control", @required = "required" })
                 @Html.ValidationMessageFor(model => model.Produto_Id, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="col-md-3 mb-4">
                 <label for="Quantidade" class="form-label">@Html.DisplayNameFor(model => model.Quantidade)</label>
                 @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", @required = "required", id = "Quantidade" })
                 @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
             </div>
-            <div class="col-md-1 mb-4">
-                <button type="submit" class="btn btn-success" style="margin-left: 15px;" onclick="setActionType('add')">Adicionar Produto</button>
+            <div class="col-md-4 d-flex align-items-center justify-content-start" style="padding-top: 10px;">
+                <button type="submit" class="btn btn-success" onclick="setActionType('add')">Adicionar Produto</button>
             </div>
         </div>
+
 
         <table class="table">
             <thead>
