@@ -62,22 +62,30 @@ namespace KidsFashion.Controllers
 
             if (Request.Form["ActionType"] == "add")
             {
-                // Add the selected product to PedidoProdutos
-                if (model.Produto_Id > 0 && model.Quantidade > 0)
+                // Check if the product already exists in the PedidoProdutos list
+                if (model.PedidoProdutos.Any(p => p.Produto_Id == model.Produto_Id))
                 {
-                    var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
-                        .FirstOrDefault(c => c.Id == model.Produto_Id);
-
-                    var produtovm = _mapper.Map<ProdutoViewModel>(produto);
-
-                    var pedidoprodutovm = new PedidoProdutoViewModel
+                    ModelState.AddModelError("", $"Este produto já foi adicionado, caso necessite editar a quantidade remova o item e adicione novamente.");
+                }
+                else
+                {
+                    // Add the selected product to PedidoProdutos if no duplicates are found
+                    if (model.Produto_Id > 0 && model.Quantidade > 0)
                     {
-                        Produto_Id = model.Produto_Id,
-                        Produto = produtovm,
-                        Quantidade = model.Quantidade
-                    };
+                        var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
+                            .FirstOrDefault(c => c.Id == model.Produto_Id);
 
-                    model.PedidoProdutos.Add(pedidoprodutovm);
+                        var produtovm = _mapper.Map<ProdutoViewModel>(produto);
+
+                        var pedidoprodutovm = new PedidoProdutoViewModel
+                        {
+                            Produto_Id = model.Produto_Id,
+                            Produto = produtovm,
+                            Quantidade = model.Quantidade
+                        };
+
+                        model.PedidoProdutos.Add(pedidoprodutovm);
+                    }
                 }
 
                 // Store the updated list in TempData for the next request
@@ -99,6 +107,7 @@ namespace KidsFashion.Controllers
                 return RedirectToAction("Index");
             }
         }
+
 
     }
 }
