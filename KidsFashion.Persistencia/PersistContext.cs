@@ -30,6 +30,8 @@ namespace KidsFashion.Persistencia
             modelBuilder.ApplyConfiguration(new ProdutoMap());  
             modelBuilder.ApplyConfiguration(new ClienteMap());  
             modelBuilder.ApplyConfiguration(new EstoqueMap());
+            modelBuilder.ApplyConfiguration(new PedidoMap());
+            modelBuilder.ApplyConfiguration(new PedidoProdutoMap());
         }
 
         public DbSet<Categoria> Categoria { get; set; }
@@ -39,5 +41,7 @@ namespace KidsFashion.Persistencia
         public DbSet<Produto> Produto { get; set; }
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<Estoque> Estoque { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
+        public DbSet<PedidoProduto> PedidoProduto { get; set;}
     }
 }
