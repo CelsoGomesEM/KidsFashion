@@ -2,6 +2,7 @@
 using KidsFashion.Dominio;
 using KidsFashion.Models;
 using KidsFashion.Servicos.CadastrosBasicos;
+using KidsFashion.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -54,29 +55,50 @@ namespace KidsFashion.Controllers
             var clientes = await servicoCliente.ObterTodos();
             var produtos = await servicoProduto.ObterTodos();
 
-            // Adiciona o produto temporário à lista de produtos
-            if (model.Produto_Id > 0 && model.Quantidade > 0)
+            // Retrieve the current list of PedidoProdutos from TempData, if any
+            model.PedidoProdutos = TempData.ContainsKey("PedidoProdutos")
+                ? TempData.Get<List<PedidoProdutoViewModel>>("PedidoProdutos")
+                : new List<PedidoProdutoViewModel>();
+
+            if (Request.Form["ActionType"] == "add")
             {
-                var produto = servicoProduto.ObterTodosCompletoRastreamento().Result.Where(c => c.Id == model.Produto_Id).FirstOrDefault();
-
-                var produtovm = _mapper.Map<ProdutoViewModel>(produto);
-
-                var pedidoprodutovm = new PedidoProdutoViewModel
+                // Add the selected product to PedidoProdutos
+                if (model.Produto_Id > 0 && model.Quantidade > 0)
                 {
-                    Produto_Id = model.Produto_Id,
-                    Produto = produtovm,
-                    Quantidade = model.Quantidade
-                };
-                model.PedidoProdutos.Add(pedidoprodutovm);
+                    var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
+                        .FirstOrDefault(c => c.Id == model.Produto_Id);
+
+                    var produtovm = _mapper.Map<ProdutoViewModel>(produto);
+
+                    var pedidoprodutovm = new PedidoProdutoViewModel
+                    {
+                        Produto_Id = model.Produto_Id,
+                        Produto = produtovm,
+                        Quantidade = model.Quantidade
+                    };
+
+                    model.PedidoProdutos.Add(pedidoprodutovm);
+                }
+
+                // Store the updated list in TempData for the next request
+                TempData.Put("PedidoProdutos", model.PedidoProdutos);
+
+                // Reload options for Cliente and Produto
+                model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
+                model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+
+                return View("Create", model);
             }
+            else
+            {
+                // Final save action; you could save the order to the database here
 
-            // Recarrega opções de cliente e produto
-            model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
-            model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+                // Clear the TempData once it's saved
+                TempData.Remove("PedidoProdutos");
 
-            // Redirecione para a lista de categorias após o sucesso
-            return View("Create", model);
-
+                return RedirectToAction("Index");
+            }
         }
+
     }
 }

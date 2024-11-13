@@ -72,3 +72,4 @@ C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\refint\KidsFashion.dll
 C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\KidsFashion.pdb
 C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\KidsFashion.genruntimeconfig.cache
 C:\CELSO\KidsFashion\KidsFashion\obj\Debug\net6.0\ref\KidsFashion.dll
+C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Newtonsoft.Json.dll

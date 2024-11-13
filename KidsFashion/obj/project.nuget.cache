@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2WOMq1QUFKvPzlHFra2MtYn7m8VYSppH5MPYKTeagVFtBBUuvKq/d0nsNYOXiaIbCOVOue0Ug1diX9h6u8s1yQ==",
+  "dgSpecHash": "58QHD/OBp/i9FkFnrHGuvoxWOul0SY9TqtPm8YQ2Vm7YpXqVYWPbrRBv0iO9VR/eIQ1goENi7qDOCjool4x4zQ==",
   "success": true,
   "projectFilePath": "C:\\CELSO\\KidsFashion\\KidsFashion\\KidsFashion.csproj",
   "expectedPackageFiles": [
@@ -31,6 +31,7 @@
     "C:\\Users\\CGBJunior\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\CGBJunior\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
