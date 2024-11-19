@@ -100,5 +100,72 @@ namespace KidsFashion.Persistencia.Repositorios
             }
         }
 
+        public async Task RemoverItensPedidoComAtualizacaoEstoqueAsync(long pedidoId)
+        {
+            using (var transaction = await Contexto.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    // 1. Buscar os itens do pedido
+                    var buscarItensSql = @"SELECT pp.Produto_Id, pp.Quantidade 
+                                   FROM PedidoProduto pp
+                                   WHERE pp.Pedido_Id = @PedidoId";
+
+                    var itensPedido = new List<(int ProdutoId, int Quantidade)>();
+
+                    using (var command = Contexto.Database.GetDbConnection().CreateCommand())
+                    {
+                        command.CommandText = buscarItensSql;
+                        command.Transaction = transaction.GetDbTransaction();
+                        command.Parameters.Add(new SqlParameter("@PedidoId", pedidoId));
+
+                        await Contexto.Database.OpenConnectionAsync();
+
+                        using (var reader = await command.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                itensPedido.Add((
+                                    ProdutoId: reader.GetInt32(0),
+                                    Quantidade: reader.GetInt32(1)
+                                ));
+                            }
+                        }
+                    }
+
+                    // 2. Remover os itens do pedido
+                    var removerPedidoProdutoSql = @"DELETE FROM PedidoProduto 
+                                            WHERE Pedido_Id = @PedidoId";
+
+                    await Contexto.Database.ExecuteSqlRawAsync(removerPedidoProdutoSql,
+                        new SqlParameter("@PedidoId", pedidoId));
+
+                    // 3. Atualizar o estoque com os itens removidos
+                    foreach (var (produtoId, quantidade) in itensPedido)
+                    {
+                        var atualizarEstoqueSql = @"UPDATE Estoque
+                                            SET Quantidade = Quantidade + @Quantidade
+                                            WHERE Produto_Id = @ProdutoId";
+
+                        await Contexto.Database.ExecuteSqlRawAsync(atualizarEstoqueSql,
+                            new SqlParameter("@Quantidade", quantidade),
+                            new SqlParameter("@ProdutoId", produtoId));
+                    }
+
+                    // Confirmar a transação
+                    await transaction.CommitAsync();
+                }
+                catch
+                {
+                    // Reverter a transação em caso de erro
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+                finally
+                {
+                    await Contexto.Database.CloseConnectionAsync();
+                }
+            }
+        }
     }
 }

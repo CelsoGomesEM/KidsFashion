@@ -205,7 +205,112 @@ namespace KidsFashion.Controllers
                 Text = te.Nome
             }).ToList();
 
+            //// Salvar os produtos em TempData
+            TempData.Put("PedidoProdutos", pedidoVm.PedidoProdutos);
+
             return View("Edit", pedidoVm);
         }
+
+        // Processa o envio do formulário de edição
+        [HttpPost]
+        public async Task<IActionResult> SubmitEdit(PedidoViewModel model)
+        {
+            var servicoCliente = new ServicoCliente();
+            var servicoProduto = new ServicoProduto();
+            var servicoPedido = new ServicoPedido();
+            var servicoPedidoProduto = new ServicoPedidoProduto();
+
+            var clientes = await servicoCliente.ObterTodos();
+            var produtos = await servicoProduto.ObterTodos();
+
+            // Recuperar os produtos do TempData
+            model.PedidoProdutos = TempData.ContainsKey("PedidoProdutos")
+                ? TempData.Get<List<PedidoProdutoViewModel>>("PedidoProdutos")
+                : new List<PedidoProdutoViewModel>();
+
+            var actionType = Request.Form["ActionType"];
+
+            if (actionType == "add")
+            {
+                // Lógica de adicionar produto
+                if (model.PedidoProdutos.Any(p => p.Produto_Id == model.Produto_Id))
+                {
+                    ModelState.AddModelError("", "Este produto já foi adicionado. Remova-o para editar.");
+                }
+                else if (!ExisteProdutoEmEstoque(model.Produto_Id))
+                {
+                    ModelState.AddModelError("", "Produto sem estoque disponível.");
+                }
+                else if (model.Produto_Id > 0 && model.Quantidade > 0)
+                {
+                    var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
+                        .FirstOrDefault(c => c.Id == model.Produto_Id);
+
+                    var produtovm = _mapper.Map<ProdutoViewModel>(produto);
+
+                    var pedidoprodutovm = new PedidoProdutoViewModel
+                    {
+                        Produto_Id = model.Produto_Id,
+                        Produto = produtovm,
+                        Quantidade = model.Quantidade
+                    };
+
+                    model.PedidoProdutos.Add(pedidoprodutovm);
+                }
+            }
+            else if (actionType == "remove")
+            {
+                // Lógica de remover produto
+                var produtoARemover = model.PedidoProdutos.FirstOrDefault(p => p.Produto_Id == model.Produto_Id);
+
+                if (produtoARemover != null)
+                {
+                    model.PedidoProdutos.Remove(produtoARemover);
+                }
+            }
+            else if (actionType == "save")
+            {
+                if (!model.PedidoProdutos.Any())
+                {
+                    ModelState.AddModelError("", "Necessário adicionar um item ao menos para salvar o pedido.");
+                    model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
+                    model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+                    return View("Edit", model);
+                }
+
+                var pedido = servicoPedido.ObterTodosFiltro(c => c.Id == model.Id).Result.FirstOrDefault();
+                pedido.DataPedido = model.DataPedido;
+
+                await servicoPedido.Atualizar(pedido);
+
+                await servicoPedido.RemoverItensPedidoComAtualizacaoEstoqueAsync(pedido.Id.Value);
+
+                foreach (var item in model.PedidoProdutos)
+                {
+                    var pedidoItem = new PedidoProduto();
+                    pedidoItem.Pedido_Id = model.Id;
+                    pedidoItem.Produto_Id = item.Produto_Id;
+                    pedidoItem.Quantidade = item.Quantidade;
+
+                    await servicoPedidoProduto.Adicionar(pedidoItem);
+                    AtualizarEstoqueAsync(pedidoItem.Produto_Id, pedidoItem.Quantidade);
+                }
+
+                // Lógica para salvar ou outra ação
+                TempData.Remove("PedidoProdutos");
+
+                return RedirectToAction("Index");
+            }
+
+            TempData.Put("PedidoProdutos", model.PedidoProdutos);
+
+            model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
+            model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+
+            return View("Edit", model);
+        }
+
+
+
     }
 }

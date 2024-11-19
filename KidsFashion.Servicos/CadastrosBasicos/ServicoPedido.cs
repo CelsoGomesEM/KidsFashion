@@ -19,5 +19,13 @@ namespace KidsFashion.Servicos.CadastrosBasicos
                 await repositorio.RemoverPedidoComAtualizacaoEstoqueAsync(pedidoId);
             }
         }
+
+        public async Task RemoverItensPedidoComAtualizacaoEstoqueAsync(int pedidoId)
+        {
+            using (var repositorio = new RepositorioPedido())
+            {
+                await repositorio.RemoverItensPedidoComAtualizacaoEstoqueAsync(pedidoId);
+            }
+        }
     }
 }
