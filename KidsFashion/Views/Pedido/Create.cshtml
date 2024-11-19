@@ -34,12 +34,12 @@
         <div class="form-group row">
             <div class="col-md-5 mb-4">
                 <label for="Produto_Id" class="form-label">@Html.DisplayNameFor(model => model.Produto)</label>
-                @Html.DropDownListFor(model => model.Produto_Id, Model.ProdutoOptions, "Selecione um Produto", new { @class = "form-control", @required = "required" })
+                @Html.DropDownListFor(model => model.Produto_Id, Model.ProdutoOptions, "Selecione um Produto", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Produto_Id, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-3 mb-4">
                 <label for="Quantidade" class="form-label">@Html.DisplayNameFor(model => model.Quantidade)</label>
-                @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", @required = "required", id = "Quantidade" })
+                @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control", id = "Quantidade" })
                 @Html.ValidationMessageFor(model => model.Quantidade, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-4 d-flex align-items-center justify-content-start" style="padding-top: 10px;">

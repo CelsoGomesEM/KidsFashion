@@ -72,6 +72,7 @@ namespace KidsFashion.Controllers
                 {
                     ModelState.AddModelError("", "Produto sem estoque disponível.");
                 }
+                
                 else if (model.Produto_Id > 0 && model.Quantidade > 0)
                 {
                     var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
@@ -101,6 +102,14 @@ namespace KidsFashion.Controllers
             }
             else if (actionType == "save")
             {
+                if (!model.PedidoProdutos.Any())
+                {
+                    ModelState.AddModelError("", "Necessário adicionar um item ao menos para salvar o pedido.");
+                    model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
+                    model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+                    return View("Create", model);
+                }
+
                 var servicoPedido = new ServicoPedido();
                 var pedido = new Pedido();
                 pedido.Cliente_Id = model.Cliente_Id;
@@ -169,6 +178,34 @@ namespace KidsFashion.Controllers
             await servicoPedido.RemoverPedidoComAtualizacaoEstoqueAsync(id);
 
             return RedirectToAction("Index");
+        }
+
+        // Processa o envio do formulário de edição
+        [HttpGet]
+        public async Task<IActionResult> Edit(long id)
+        {
+            var servicoPedido = new ServicoPedido();
+            var servicoCliente = new ServicoCliente();
+            var servicoProduto = new ServicoProduto();
+
+            var pedido = servicoPedido.ObterTodosCompletoRastreamento().Result.Where(c => c.Id == id).FirstOrDefault();
+
+            var pedidoVm = _mapper.Map<PedidoViewModel>(pedido);
+
+            pedidoVm.ClienteOptions = servicoCliente.ObterTodos().Result.Select(te => new SelectListItem
+            {
+                Value = te.Id.ToString(),
+                Text = te.Nome,
+                Selected = te.Id == pedido.Cliente_Id
+            }).ToList();
+
+            pedidoVm.ProdutoOptions = servicoProduto.ObterTodos().Result.Select(te => new SelectListItem
+            {
+                Value = te.Id.ToString(),
+                Text = te.Nome
+            }).ToList();
+
+            return View("Edit", pedidoVm);
         }
     }
 }

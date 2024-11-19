@@ -19,7 +19,9 @@ namespace KidsFashion.Persistencia.Repositorios
         {
             return await DbSet
                 .Rastrear(true)
-                    .Include(c => c.Cliente)
+                .Include(p => p.Cliente) // Inclui os detalhes do Cliente
+                .Include(p => p.PedidoProdutos) // Inclui os itens do pedido
+                    .ThenInclude(pp => pp.Produto) // Opcional: Inclui os detalhes do Produto, se necessário
                 .ToListAsync();
         }
 
