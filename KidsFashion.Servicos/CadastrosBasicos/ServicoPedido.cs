@@ -12,6 +12,12 @@ namespace KidsFashion.Servicos.CadastrosBasicos
 {
     public class ServicoPedido : ServicoAbstratoDeCadastro<Pedido, RepositorioPedido, PersistContext>
     {
-
+        public async Task RemoverPedidoComAtualizacaoEstoqueAsync(long pedidoId)
+        {
+            using (var repositorio = new RepositorioPedido())
+            {
+                await repositorio.RemoverPedidoComAtualizacaoEstoqueAsync(pedidoId);
+            }
+        }
     }
 }
