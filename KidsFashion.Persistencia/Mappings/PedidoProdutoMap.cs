@@ -15,6 +15,9 @@ namespace KidsFashion.Persistencia.Mappings
         {
             builder.ToTable("PedidoProduto");
 
+            // Ignorar a propriedade herdada 'Id'
+            builder.Ignore(pp => pp.Id);
+
             // Definir a chave composta
             builder.HasKey(pp => new { pp.Pedido_Id, pp.Produto_Id });
 

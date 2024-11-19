@@ -21,7 +21,7 @@ namespace KidsFashion.Controllers
         {
             var servicoPedido = new ServicoPedido();
 
-            var pedidos = await servicoPedido.ObterTodos();
+            var pedidos = await servicoPedido.ObterTodosCompletoRastreamento();
 
             var retorno = _mapper.Map<List<PedidoViewModel>>(pedidos);
 
@@ -59,50 +59,93 @@ namespace KidsFashion.Controllers
                 ? TempData.Get<List<PedidoProdutoViewModel>>("PedidoProdutos")
                 : new List<PedidoProdutoViewModel>();
 
-            if (Request.Form["ActionType"] == "add")
+            var actionType = Request.Form["ActionType"];
+            
+            if (actionType == "add")
             {
-                
+                // Lógica de adicionar produto
                 if (model.PedidoProdutos.Any(p => p.Produto_Id == model.Produto_Id))
                 {
-                    ModelState.AddModelError("", $"Este produto já foi adicionado, caso necessite editar a quantidade remova o item e adicione novamente.");
+                    ModelState.AddModelError("", "Este produto já foi adicionado. Remova-o para editar.");
                 }
                 else if (!ExisteProdutoEmEstoque(model.Produto_Id))
                 {
-                    ModelState.AddModelError("", $"Todas as unidades existentes deste produto já foram vendidas, ou produto não existe em estoque.");
+                    ModelState.AddModelError("", "Produto sem estoque disponível.");
                 }
-                else
+                else if (model.Produto_Id > 0 && model.Quantidade > 0)
                 {
-                    // Add the selected product to PedidoProdutos if no duplicates are found
-                    if (model.Produto_Id > 0 && model.Quantidade > 0)
+                    var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
+                        .FirstOrDefault(c => c.Id == model.Produto_Id);
+
+                    var produtovm = _mapper.Map<ProdutoViewModel>(produto);
+
+                    var pedidoprodutovm = new PedidoProdutoViewModel
                     {
-                        var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
-                            .FirstOrDefault(c => c.Id == model.Produto_Id);
+                        Produto_Id = model.Produto_Id,
+                        Produto = produtovm,
+                        Quantidade = model.Quantidade
+                    };
 
-                        var produtovm = _mapper.Map<ProdutoViewModel>(produto);
+                    model.PedidoProdutos.Add(pedidoprodutovm);
+                }
+            }
+            else if (actionType == "remove")
+            {
+                // Lógica de remover produto
+                var produtoARemover = model.PedidoProdutos.FirstOrDefault(p => p.Produto_Id == model.Produto_Id);
+               
+                if (produtoARemover != null)
+                {
+                    model.PedidoProdutos.Remove(produtoARemover);
+                }
+            }
+            else if (actionType == "save")
+            {
+                var servicoPedido = new ServicoPedido();
+                var pedido = new Pedido();
+                pedido.Cliente_Id = model.Cliente_Id;
+                pedido.DataPedido = model.DataPedido;
 
-                        var pedidoprodutovm = new PedidoProdutoViewModel
-                        {
-                            Produto_Id = model.Produto_Id,
-                            Produto = produtovm,
-                            Quantidade = model.Quantidade
-                        };
+                var idPedido = await servicoPedido.AdicionarRetornarID(pedido);
 
-                        model.PedidoProdutos.Add(pedidoprodutovm);
-                    }
+                var servicoPedidoProduto = new ServicoPedidoProduto();
+
+                foreach (var item in model.PedidoProdutos)
+                {
+                    var pedidoItem = new PedidoProduto();
+                    pedidoItem.Pedido_Id = idPedido;
+                    pedidoItem.Produto_Id = item.Produto_Id;
+                    pedidoItem.Quantidade = item.Quantidade;
+
+                    await servicoPedidoProduto.Adicionar(pedidoItem);
+                    AtualizarEstoqueAsync(pedidoItem.Produto_Id, pedidoItem.Quantidade);
+
                 }
 
-                TempData.Put("PedidoProdutos", model.PedidoProdutos);
-
-                model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
-                model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
-
-                return View("Create", model);
-            }
-            else
-            {
+                // Lógica para salvar ou outra ação
                 TempData.Remove("PedidoProdutos");
+
                 return RedirectToAction("Index");
             }
+
+            TempData.Put("PedidoProdutos", model.PedidoProdutos);
+
+            model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
+            model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+
+            return View("Create", model);
+        }
+
+        private async Task AtualizarEstoqueAsync(int ProdutoId, int Quantidade)
+        {
+            //Atualizar Estoque
+            var servicoEstoque = new ServicoEstoque();
+
+            var produtoEmEstoque = servicoEstoque.ObterTodosFiltro(c => c.Produto_Id == ProdutoId).Result.FirstOrDefault();
+
+            produtoEmEstoque.Quantidade -= Quantidade;
+
+            await servicoEstoque.Atualizar(produtoEmEstoque);
         }
 
         private bool ExisteProdutoEmEstoque(int produto_Id)

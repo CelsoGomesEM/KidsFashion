@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KidsFashion.Dominio
 {
-    public class PedidoProduto
+    public class PedidoProduto : EntidadeComId
     {
         public int Pedido_Id { get; set; }
         public Pedido Pedido { get; set; }
