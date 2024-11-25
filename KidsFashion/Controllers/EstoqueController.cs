@@ -66,8 +66,6 @@ namespace KidsFashion.Controllers
             var servicoEstoque = new ServicoEstoque();
             var servicoProduto = new ServicoProduto();
 
-            var servicoMunicipio = new ServicoMunicipio();
-
             var estoqueEdit = servicoEstoque.ObterTodosCompletoRastreamento().Result.Where(c => c.Id == id).FirstOrDefault();
 
             var estoqueVm = _mapper.Map<EstoqueViewModel>(estoqueEdit);
