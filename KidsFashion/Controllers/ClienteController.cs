@@ -22,10 +22,23 @@ namespace KidsFashion.Controllers
 
             var municipios = await servicoMunicipio.ObterTodos();
 
+            // Ordena os municípios por UF e Nome
+            var municipiosOrdenados = municipios
+                .OrderBy(m => m.UF)
+                .ThenBy(m => m.Nome)
+                .Select(m => new
+                {
+                    Id = m.Id,
+                    Nome = $"{m.Nome} - {m.UF}"
+                })
+                .ToList();
+
+            // Cria o SelectList com o Nome concatenado
             var vm = new ClienteViewModel
             {
-                MunicipioOptions = new SelectList(municipios, "Id", "Nome")
+                MunicipioOptions = new SelectList(municipiosOrdenados, "Id", "Nome")
             };
+
 
             return View("Create", vm);
         }
@@ -78,7 +91,20 @@ namespace KidsFashion.Controllers
 
             clienteVm.MunicipioId = clienteEdit.Endereco_Id;
 
-            clienteVm.MunicipioOptions = servicoMunicipio.ObterTodos().Result.Select(te => new SelectListItem
+            var municipios = await servicoMunicipio.ObterTodos();
+
+            // Ordena os municípios por UF e Nome
+            var municipiosOrdenados = municipios
+                .OrderBy(m => m.UF)
+                .ThenBy(m => m.Nome)
+                .Select(m => new
+                {
+                    Id = m.Id,
+                    Nome = $"{m.Nome} - {m.UF}"
+                })
+                .ToList();
+
+            clienteVm.MunicipioOptions = municipiosOrdenados.Select(te => new SelectListItem
             {
                 Value = te.Id.ToString(),
                 Text = te.Nome,
