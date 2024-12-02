@@ -1,4 +1,5 @@
-﻿@model List<KidsFashion.Models.ClienteViewModel>
+﻿@using Newtonsoft.Json
+@model List<KidsFashion.Models.ClienteViewModel>
 
 <h1 class="display-4 text-center">Lista de Clientes</h1>
 
@@ -54,8 +55,11 @@
 
     <div class="row" style="margin-top: 10px;">
         <div class="col d-flex justify-content-end">
-            <a href="@Url.Action("Create", "Cliente")">
-                <button type="button" class="btn btn-success">Cadastrar</button>
+            <a href="@Url.Action("Imprimir", "Cliente")" class="btn btn-primary me-2">
+                Imprimir <i class="fa fa-print ms-2"></i>
+            </a>
+            <a href="@Url.Action("Create", "Cliente")" class="btn btn-success">
+                Cadastrar
             </a>
         </div>
     </div>

@@ -7,6 +7,8 @@ C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\KidsFashion.runtimeconfig.json
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\KidsFashion.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\KidsFashion.pdb
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\AutoMapper.dll
+C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\itextsharp.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\CELSO\KidsFashion\KidsFashion\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll

@@ -2,8 +2,10 @@
 using KidsFashion.Dominio;
 using KidsFashion.Models;
 using KidsFashion.Servicos.CadastrosBasicos;
+using KidsFashion.Servicos.Relatorios.Clientes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 namespace KidsFashion.Controllers
 {
@@ -150,6 +152,18 @@ namespace KidsFashion.Controllers
             await servicoCliente.RemoverEnderecoPorClienteId(cliente.Id.Value);
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Imprimir()
+        {
+            MemoryStream relatorioStream = new MemoryStream();
+
+            var gerador = new RelatorioClienteGenerator();
+
+            relatorioStream = await gerador.GerarRelatorioPDF();
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=RelatorioListagem.pdf");
+            return File(relatorioStream.ToArray(), "application/pdf");
         }
 
     }
