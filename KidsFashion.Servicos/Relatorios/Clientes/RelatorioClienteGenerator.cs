@@ -28,9 +28,9 @@ namespace KidsFashion.Servicos.Relatorios.Clientes
             // Criação do escritor PDF
             var writer = PdfWriter.GetInstance(doc, memoryStream);
 
-            string imagePathHeader = Path.Combine("wwwroot", "images", "KidsFashionRelatorio.png");
+            //string imagePathHeader = Path.Combine("wwwroot", "images", "NovaImagem.jpg");
 
-            writer.PageEvent = new CustomHeaderFooterEvent(imagePathHeader);
+            //writer.PageEvent = new CustomHeaderFooterEvent(imagePathHeader);
 
             // Abertura do documento para edição
             doc.Open();
