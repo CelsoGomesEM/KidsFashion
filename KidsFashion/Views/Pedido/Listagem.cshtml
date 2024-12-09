@@ -16,7 +16,7 @@
                 <th>Data Pedido</th>
                 <th>Editar</th>
                 <th>Excluir</th>
-                <th>Imprimir</th>
+                <th>Imprimir Detalhado</th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +45,7 @@
                         </button>
                     </td>
                     <td>
-                        <a href="@Url.Action("Imprimir", "Pedido", new { id = item.Id })">
+                        <a href="@Url.Action("ImprimirDetalhado", "Pedido", new { id = item.Id })">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#printModal" data-id="@item.Id">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
                                     <path d="M2 7a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2h1a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H2Zm12 2v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1ZM4 12v3h8v-3H4Z" />
