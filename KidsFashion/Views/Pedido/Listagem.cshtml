@@ -64,8 +64,11 @@
 
     <div class="row" style="margin-top: 10px;">
         <div class="col d-flex justify-content-end">
-            <a href="@Url.Action("Create", "Pedido")">
-                <button type="button" class="btn btn-success">Cadastrar</button>
+            <a href="@Url.Action("Imprimir", "Pedido")" class="btn btn-primary me-2">
+                Imprimir <i class="fa fa-print ms-2"></i>
+            </a>
+            <a href="@Url.Action("Create", "Pedido")" class="btn btn-success">
+                Cadastrar
             </a>
         </div>
     </div>

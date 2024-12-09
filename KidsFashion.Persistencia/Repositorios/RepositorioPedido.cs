@@ -21,7 +21,8 @@ namespace KidsFashion.Persistencia.Repositorios
                 .Rastrear(true)
                 .Include(p => p.Cliente) // Inclui os detalhes do Cliente
                 .Include(p => p.PedidoProdutos) // Inclui os itens do pedido
-                    .ThenInclude(pp => pp.Produto) // Opcional: Inclui os detalhes do Produto, se necessário
+                    .ThenInclude(pp => pp.Produto)
+                     .ThenInclude(pp => pp.Categoria)// Opcional: Inclui os detalhes do Produto, se necessário
                 .ToListAsync();
         }
 

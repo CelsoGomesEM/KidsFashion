@@ -2,6 +2,9 @@
 using KidsFashion.Dominio;
 using KidsFashion.Models;
 using KidsFashion.Servicos.CadastrosBasicos;
+using KidsFashion.Servicos.Relatorios.Clientes;
+using KidsFashion.Servicos.Relatorios.Fornecedores;
+using KidsFashion.Servicos.Relatorios.Pedidos;
 using KidsFashion.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -310,7 +313,29 @@ namespace KidsFashion.Controllers
             return View("Edit", model);
         }
 
+        public async Task<IActionResult> Imprimir()
+        {
+            MemoryStream relatorioStream = new MemoryStream();
 
+            var gerador = new RelatorioPedidoGenerator();
+
+            relatorioStream = await gerador.GerarRelatorioPDF();
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=Pedidos.pdf");
+            return File(relatorioStream.ToArray(), "application/pdf");
+        }
+
+        public async Task<IActionResult> ImprimirDetalhado(int id)
+        {
+            MemoryStream relatorioStream = new MemoryStream();
+
+            var gerador = new RelatorioPedidoDetalhadoGenerator(id);
+
+            relatorioStream = await gerador.GerarRelatorioPDF();
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=PedidoDetalhado.pdf");
+            return File(relatorioStream.ToArray(), "application/pdf");
+        }
 
     }
 }

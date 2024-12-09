@@ -85,8 +85,12 @@
                     <button type="button" class="btn btn-secondary">Voltar</button>
                 </a>
                 <button type="submit" class="btn btn-success" style="margin-left: 15px;" onclick="setActionType('save')">Salvar</button>
+                <a href="@Url.Action("ImprimirDetalhado", "Pedido", new { id = Model.Id })" class="btn btn-primary" style="margin-left: 15px;">
+                    Imprimir <i class="fa fa-print ms-2"></i>
+                </a>
             </div>
         </div>
+
     }
 </div>
 
