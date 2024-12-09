@@ -71,7 +71,7 @@ namespace KidsFashion.Servicos.Relatorios.Clientes
 
             return memoryStream;
         }
-        private static PdfPTable CriarTabela()
+        private PdfPTable CriarTabela()
         {
             // Criando uma tabela com três colunas
             PdfPTable table = new PdfPTable(3);

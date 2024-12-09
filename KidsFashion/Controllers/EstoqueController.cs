@@ -2,6 +2,8 @@
 using KidsFashion.Dominio;
 using KidsFashion.Models;
 using KidsFashion.Servicos.CadastrosBasicos;
+using KidsFashion.Servicos.Relatorios.Estoques;
+using KidsFashion.Servicos.Relatorios.Produtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -108,6 +110,18 @@ namespace KidsFashion.Controllers
             await servicoEstoque.Remover(estoqueRemover);
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Imprimir()
+        {
+            MemoryStream relatorioStream = new MemoryStream();
+
+            var gerador = new RelatorioEstoqueGenerator();
+
+            relatorioStream = await gerador.GerarRelatorioPDF();
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=Estoques.pdf");
+            return File(relatorioStream.ToArray(), "application/pdf");
         }
     }
 }
