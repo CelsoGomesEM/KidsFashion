@@ -2,6 +2,8 @@
 using KidsFashion.Dominio;
 using KidsFashion.Models;
 using KidsFashion.Servicos.CadastrosBasicos;
+using KidsFashion.Servicos.Relatorios.Clientes;
+using KidsFashion.Servicos.Relatorios.Fornecedores;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -149,6 +151,18 @@ namespace KidsFashion.Controllers
             }).ToList();
 
             return View("Edit", fornecedorVm);
+        }
+
+        public async Task<IActionResult> Imprimir()
+        {
+            MemoryStream relatorioStream = new MemoryStream();
+
+            var gerador = new RelatorioFornecedorGenerator();
+
+            relatorioStream = await gerador.GerarRelatorioPDF();
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=Fornecedores.pdf");
+            return File(relatorioStream.ToArray(), "application/pdf");
         }
     }
 }
