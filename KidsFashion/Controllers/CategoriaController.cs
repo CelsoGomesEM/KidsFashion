@@ -2,6 +2,8 @@
 using KidsFashion.Dominio;
 using KidsFashion.Models;
 using KidsFashion.Servicos.CadastrosBasicos;
+using KidsFashion.Servicos.Relatorios.Categorias;
+using KidsFashion.Servicos.Relatorios.Clientes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -90,6 +92,18 @@ namespace KidsFashion.Controllers
             await servicoCategoria.Remover(categoriaRemover);
 
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Imprimir()
+        {
+            MemoryStream relatorioStream = new MemoryStream();
+
+            var gerador = new RelatorioCategoriaGenerator();
+
+            relatorioStream = await gerador.GerarRelatorioPDF();
+
+            Response.Headers.Add("Content-Disposition", "attachment; filename=Categorias.pdf");
+            return File(relatorioStream.ToArray(), "application/pdf");
         }
     }
 }

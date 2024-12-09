@@ -162,7 +162,7 @@ namespace KidsFashion.Controllers
 
             relatorioStream = await gerador.GerarRelatorioPDF();
 
-            Response.Headers.Add("Content-Disposition", "attachment; filename=RelatorioListagem.pdf");
+            Response.Headers.Add("Content-Disposition", "attachment; filename=Clientes.pdf");
             return File(relatorioStream.ToArray(), "application/pdf");
         }
 
