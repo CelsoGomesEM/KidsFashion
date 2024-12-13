@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KidsFashion.Servicos.Interfaces;
+using static iTextSharp.text.pdf.AcroFields;
 
 namespace KidsFashion.Servicos.Relatorios.Pedidos
 {
@@ -46,6 +47,7 @@ namespace KidsFashion.Servicos.Relatorios.Pedidos
             // Fonte para cabeçalhos e texto
             Font boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
             Font normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 10);
+            Font italicFont = FontFactory.GetFont(FontFactory.TIMES_BOLDITALIC, 12);
 
             // Criar tabela de Cliente e Data do Pedido
             PdfPTable tabelaPedido = new PdfPTable(2);
@@ -59,6 +61,8 @@ namespace KidsFashion.Servicos.Relatorios.Pedidos
             // Dados do Cliente e Data do Pedido
             tabelaPedido.AddCell(new PdfPCell(new Phrase(pedido.Cliente.Nome, normalFont)) { HorizontalAlignment = PdfPCell.ALIGN_LEFT });
             tabelaPedido.AddCell(new PdfPCell(new Phrase(pedido.DataPedido.ToString("dd/MM/yyyy"), normalFont)) { HorizontalAlignment = PdfPCell.ALIGN_CENTER });
+
+          
 
             doc.Add(tabelaPedido);
 
@@ -79,6 +83,15 @@ namespace KidsFashion.Servicos.Relatorios.Pedidos
                 tabelaItens.AddCell(new PdfPCell(new Phrase(item.Produto.Categoria.Descricao, normalFont)) { HorizontalAlignment = PdfPCell.ALIGN_CENTER });
                 tabelaItens.AddCell(new PdfPCell(new Phrase(item.Quantidade.ToString(), normalFont)) { HorizontalAlignment = PdfPCell.ALIGN_RIGHT });
             }
+
+            // Adicionar o valor total, ocupando as duas colunas
+            PdfPCell valorTotalCell = new PdfPCell(new Phrase($"VALOR TOTAL: {pedido.PedidoProdutos.Sum(c => c.Valor * c.Quantidade).ToString("C2")}", italicFont))
+            {
+                Colspan = 3, // A célula ocupa as duas colunas
+                HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+            };
+
+            tabelaItens.AddCell(valorTotalCell);
 
             doc.Add(tabelaItens);
 

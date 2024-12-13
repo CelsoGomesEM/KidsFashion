@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KidsFashion.Servicos.Interfaces;
+using KidsFashion.Persistencia.Migrations;
 
 namespace KidsFashion.Servicos.Relatorios.Pedidos
 {
@@ -50,6 +51,13 @@ namespace KidsFashion.Servicos.Relatorios.Pedidos
                 cpfCell.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
                 tabela.AddCell(cpfCell);
 
+                var valorTotalPedido = item.PedidoProdutos.Sum(c => c.Valor * c.Quantidade);
+
+                // Adiciona o CPF (alinhado ao centro) com a data formatada
+                PdfPCell valorTotalCell = new PdfPCell(new Phrase(valorTotalPedido.ToString()));
+                cpfCell.HorizontalAlignment = PdfPCell.ALIGN_RIGHT;
+                tabela.AddCell(valorTotalCell);
+
             }
 
             // Certifique-se de que a tabela preenche o restante da página corretamente
@@ -67,13 +75,13 @@ namespace KidsFashion.Servicos.Relatorios.Pedidos
         private PdfPTable CriarTabela()
         {
             // Criando uma tabela com três colunas
-            PdfPTable table = new PdfPTable(2);
+            PdfPTable table = new PdfPTable(3);
             table.WidthPercentage = 100; // Preenche a largura da página
             table.SpacingBefore = 10f;   // Espaço antes da tabela
             table.SpacingAfter = 10f;    // Espaço depois da tabela
 
             // Definindo largura para cada coluna (Nome maior)
-            float[] columnWidths = { 60f, 40f };
+            float[] columnWidths = { 50f, 30f, 20f };
             table.SetWidths(columnWidths);
 
             // Fonte em negrito para o cabeçalho
@@ -88,6 +96,11 @@ namespace KidsFashion.Servicos.Relatorios.Pedidos
             PdfPCell cell1 = new PdfPCell(new Phrase("DATA PEDIDO", boldFont));
             cell1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
             table.AddCell(cell1);
+
+            // Cabeçalho: DATA PEDIDO
+            PdfPCell cell2 = new PdfPCell(new Phrase("VALOR TOTAL", boldFont));
+            cell1.HorizontalAlignment = PdfPCell.ALIGN_CENTER;
+            table.AddCell(cell2);
 
             return table;
         }
