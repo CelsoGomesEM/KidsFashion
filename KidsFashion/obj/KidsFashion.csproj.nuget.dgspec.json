@@ -297,6 +297,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "jQuery.Mask": {
+              "target": "Package",
+              "version": "[1.14.16, )"
             }
           },
           "imports": [

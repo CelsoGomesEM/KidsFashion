@@ -14,5 +14,8 @@ namespace KidsFashion.Models
         // Para Produto
         public int Produto_Id { get; set; }
         public IEnumerable<SelectListItem> ProdutoOptions { get; set; }
+
+        [Display(Name = "Preço Unitário")]
+        public decimal PrecoUnitario { get; set; }
     }
 }

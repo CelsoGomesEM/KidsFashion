@@ -27,6 +27,10 @@ namespace KidsFashion.Persistencia.Mappings
                 .HasColumnType("datetime")
                 .IsRequired();
 
+            builder.Property(p => p.PrecoUnitario)
+                 .HasColumnType("decimal(18,2)") // Define a precisão e escala do decimal
+                 .IsRequired(); // Torna o campo obrigatório
+
             // Relacionamento 1:N com Produto
             builder.HasOne(p => p.Produto)
                 .WithMany()

@@ -14,6 +14,7 @@
                 <th>Id</th>
                 <th>Quantidade</th>
                 <th>Produto</th>
+                <th>Preço Unt.</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
@@ -25,6 +26,7 @@
                     <td>@item.Id</td>
                     <td>@item.Quantidade</td>
                     <td>@item.Produto.Nome</td>
+                    <td>@item.PrecoUnitario</td>
                     <td>
                         <a href="@Url.Action("Edit", "Estoque", new { id = item.Id })">
                             <button type="button" class="btn btn-primary">

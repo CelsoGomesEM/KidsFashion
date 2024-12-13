@@ -53,6 +53,7 @@ namespace KidsFashion.Controllers
             estoque.Quantidade = model.Quantidade;
             estoque.DataEntrada = model.DataEntrada;
             estoque.Produto_Id = model.Produto.Id;
+            estoque.PrecoUnitario = model.PrecoUnitario;
 
             await servicoEstoque.Adicionar(estoque);
 
@@ -93,6 +94,7 @@ namespace KidsFashion.Controllers
             var estoqueEdit = servicoEstoque.ObterTodosCompletoRastreamento().Result.Where(c => c.Id == model.Id).FirstOrDefault();
             estoqueEdit.Quantidade = model.Quantidade;
             estoqueEdit.DataEntrada = model.DataEntrada;
+            estoqueEdit.PrecoUnitario = model.PrecoUnitario;
 
             await servicoEstoque.Atualizar(estoqueEdit);
 

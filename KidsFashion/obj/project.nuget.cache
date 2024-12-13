@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "qgnSQCSnod0gKFHWk9YuBpQR2DHk40/2JPGIMRm4XWw0kgYZorNfTz2UdH/iYHYx/n6X6iKUAQk3AGYAgmKcEA==",
+  "dgSpecHash": "cpkW8qrSQUEgtcC9OpSH9kUNwokd02jZSZRJiau/3fz7i+OUEJtLIA7uPxPEZzcjOIUoQyMt119ngH6JBOkPZQ==",
   "success": true,
   "projectFilePath": "C:\\CELSO\\KidsFashion\\KidsFashion\\KidsFashion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CGBJunior\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\itextsharp\\5.5.13.4\\itextsharp.5.5.13.4.nupkg.sha512",
+    "C:\\Users\\CGBJunior\\.nuget\\packages\\jquery\\1.7.0\\jquery.1.7.0.nupkg.sha512",
+    "C:\\Users\\CGBJunior\\.nuget\\packages\\jquery.mask\\1.14.16\\jquery.mask.1.14.16.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\CGBJunior\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",

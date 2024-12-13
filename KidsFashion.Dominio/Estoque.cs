@@ -12,5 +12,6 @@ namespace KidsFashion.Dominio
         public int Quantidade { get; set; }
         public int Produto_Id { get; set; } // FK para Produto
         public Produto Produto { get; set; }
+        public decimal PrecoUnitario { get; set; }
     }
 }
