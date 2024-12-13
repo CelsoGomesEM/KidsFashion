@@ -25,8 +25,13 @@ namespace KidsFashion.Controllers
             var servicoPedido = new ServicoPedido();
 
             var pedidos = await servicoPedido.ObterTodosCompletoRastreamento();
-
+            
             var retorno = _mapper.Map<List<PedidoViewModel>>(pedidos);
+
+            foreach (var pedido in retorno)
+            {
+                pedido.ValorTotal = pedido.PedidoProdutos.Sum(c => c.Valor * c.Quantidade);
+            }
 
             return View("Listagem", retorno);
         }
@@ -54,6 +59,8 @@ namespace KidsFashion.Controllers
         {
             var servicoProduto = new ServicoProduto();
             var servicoCliente = new ServicoCliente();
+            var servicoEstoque = new ServicoEstoque();
+
 
             var clientes = await servicoCliente.ObterTodos();
             var produtos = await servicoProduto.ObterTodos();
@@ -81,13 +88,16 @@ namespace KidsFashion.Controllers
                     var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
                         .FirstOrDefault(c => c.Id == model.Produto_Id);
 
+                    var estoqueProduto = servicoEstoque.ObterTodosFiltro(c => c.Produto_Id == model.Produto_Id).Result.FirstOrDefault();
+
                     var produtovm = _mapper.Map<ProdutoViewModel>(produto);
 
                     var pedidoprodutovm = new PedidoProdutoViewModel
                     {
                         Produto_Id = model.Produto_Id,
                         Produto = produtovm,
-                        Quantidade = model.Quantidade
+                        Quantidade = model.Quantidade,
+                        Valor = estoqueProduto.PrecoUnitario
                     };
 
                     model.PedidoProdutos.Add(pedidoprodutovm);
@@ -99,9 +109,8 @@ namespace KidsFashion.Controllers
                 var produtoARemover = model.PedidoProdutos.FirstOrDefault(p => p.Produto_Id == model.Produto_Id);
                
                 if (produtoARemover != null)
-                {
                     model.PedidoProdutos.Remove(produtoARemover);
-                }
+
             }
             else if (actionType == "save")
             {
@@ -128,6 +137,7 @@ namespace KidsFashion.Controllers
                     pedidoItem.Pedido_Id = idPedido;
                     pedidoItem.Produto_Id = item.Produto_Id;
                     pedidoItem.Quantidade = item.Quantidade;
+                    pedidoItem.Valor = item.Valor;
 
                     await servicoPedidoProduto.Adicionar(pedidoItem);
                     AtualizarEstoqueAsync(pedidoItem.Produto_Id, pedidoItem.Quantidade);
@@ -144,6 +154,7 @@ namespace KidsFashion.Controllers
 
             model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
             model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+            model.ValorTotal = model.PedidoProdutos.Sum(c => c.Valor * c.Quantidade);
 
             return View("Create", model);
         }
@@ -211,6 +222,8 @@ namespace KidsFashion.Controllers
             //// Salvar os produtos em TempData
             TempData.Put("PedidoProdutos", pedidoVm.PedidoProdutos);
 
+            pedidoVm.ValorTotal = pedidoVm.PedidoProdutos.Sum(c => c.Valor * c.Quantidade);
+
             return View("Edit", pedidoVm);
         }
 
@@ -222,6 +235,8 @@ namespace KidsFashion.Controllers
             var servicoProduto = new ServicoProduto();
             var servicoPedido = new ServicoPedido();
             var servicoPedidoProduto = new ServicoPedidoProduto();
+            var servicoEstoque = new ServicoEstoque();
+            
 
             var clientes = await servicoCliente.ObterTodos();
             var produtos = await servicoProduto.ObterTodos();
@@ -249,13 +264,16 @@ namespace KidsFashion.Controllers
                     var produto = servicoProduto.ObterTodosCompletoRastreamento().Result
                         .FirstOrDefault(c => c.Id == model.Produto_Id);
 
+                    var estoqueProduto = servicoEstoque.ObterTodosFiltro(c => c.Produto_Id == model.Produto_Id).Result.FirstOrDefault();
+
                     var produtovm = _mapper.Map<ProdutoViewModel>(produto);
 
                     var pedidoprodutovm = new PedidoProdutoViewModel
                     {
                         Produto_Id = model.Produto_Id,
                         Produto = produtovm,
-                        Quantidade = model.Quantidade
+                        Quantidade = model.Quantidade,
+                        Valor = estoqueProduto.PrecoUnitario
                     };
 
                     model.PedidoProdutos.Add(pedidoprodutovm);
@@ -267,9 +285,7 @@ namespace KidsFashion.Controllers
                 var produtoARemover = model.PedidoProdutos.FirstOrDefault(p => p.Produto_Id == model.Produto_Id);
 
                 if (produtoARemover != null)
-                {
                     model.PedidoProdutos.Remove(produtoARemover);
-                }
             }
             else if (actionType == "save")
             {
@@ -294,6 +310,7 @@ namespace KidsFashion.Controllers
                     pedidoItem.Pedido_Id = model.Id;
                     pedidoItem.Produto_Id = item.Produto_Id;
                     pedidoItem.Quantidade = item.Quantidade;
+                    pedidoItem.Valor = item.Valor;
 
                     await servicoPedidoProduto.Adicionar(pedidoItem);
                     AtualizarEstoqueAsync(pedidoItem.Produto_Id, pedidoItem.Quantidade);
@@ -309,6 +326,7 @@ namespace KidsFashion.Controllers
 
             model.ClienteOptions = new SelectList(clientes, "Id", "Nome");
             model.ProdutoOptions = new SelectList(produtos, "Id", "Nome");
+            model.ValorTotal = model.PedidoProdutos.Sum(c => c.Valor * c.Quantidade);
 
             return View("Edit", model);
         }

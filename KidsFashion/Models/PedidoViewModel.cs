@@ -17,6 +17,7 @@ namespace KidsFashion.Models
         public int Quantidade { get; set; }
         public IEnumerable<SelectListItem> ProdutoOptions { get; set; }
         public List<PedidoProdutoViewModel> PedidoProdutos { get; set; } = new List<PedidoProdutoViewModel>();
+        public decimal ValorTotal { get; set; }
 
     }
 }

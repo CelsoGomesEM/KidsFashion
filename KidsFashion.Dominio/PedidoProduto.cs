@@ -13,5 +13,6 @@ namespace KidsFashion.Dominio
         public int Produto_Id { get; set; }
         public Produto Produto { get; set; }
         public int Quantidade { get; set; } // Quantidade do produto no pedido
+        public decimal Valor { get; set; } //Valor de quando foi feito a venda
     }
 }

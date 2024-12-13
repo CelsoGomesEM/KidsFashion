@@ -9,6 +9,7 @@ namespace KidsFashion.Models
         public ProdutoViewModel Produto { get; set; }
         public int Produto_Id { get; set; }
         public int Quantidade { get; set; }
+        public decimal Valor { get; set; }
     }
 
 }

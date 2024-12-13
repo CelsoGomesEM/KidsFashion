@@ -14,6 +14,7 @@
                 <th>Id</th>
                 <th>Cliente</th>
                 <th>Data Pedido</th>
+                <th>Valor Total</th>
                 <th>Editar</th>
                 <th>Excluir</th>
                 <th>Imprimir Detalhado</th>
@@ -26,6 +27,7 @@
                     <td>@item.Id</td>
                     <td>@item.Cliente.Nome</td>
                     <td>@item.DataPedido</td>
+                    <td>@item.ValorTotal</td>
                     <td>
                         <a href="@Url.Action("Edit", "Pedido", new { id = item.Id })">
                             <button type="button" class="btn btn-primary">

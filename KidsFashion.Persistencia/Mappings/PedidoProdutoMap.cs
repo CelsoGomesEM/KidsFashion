@@ -29,6 +29,10 @@ namespace KidsFashion.Persistencia.Mappings
                 .WithMany(p => p.PedidoProdutos)
                 .HasForeignKey(pp => pp.Pedido_Id);
 
+            builder.Property(p => p.Valor)
+                .HasColumnType("decimal(18,2)") // Define a precisão e escala do decimal
+                .IsRequired();
+
             builder.HasOne(pp => pp.Produto)
                 .WithMany() // Produto não conhece PedidoProduto
                 .HasForeignKey(pp => pp.Produto_Id);
