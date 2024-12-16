@@ -26,7 +26,7 @@
                 <tr style="vertical-align: middle;">
                     <td>@item.Id</td>
                     <td>@item.Cliente.Nome</td>
-                    <td>@item.DataPedido</td>
+                    <td>@item.DataPedido.ToString("dd/MM/yyyy")</td>
                     <td>@item.ValorTotal</td>
                     <td>
                         <a href="@Url.Action("Edit", "Pedido", new { id = item.Id })">
